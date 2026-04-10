@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INTRINSE — Conscious Nutrition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="dark">
+
+  <!-- ========== THEME SWITCHER (Demo) ========== -->
+  <div class="theme-switcher" id="themeSwitcher">
+    <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+    <div class="theme-options" id="themeOptions">
+      <button data-theme="dark" class="active">Dark</button>
+      <button data-theme="light">Light</button>
+      <button data-theme="nature">Nature</button>
+      <button data-theme="earth">Earth</button>
+    </div>
+  </div>
+
+  <!-- ========== LOADING SCREEN ========== -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">INTRINSE</div>
+      <div class="loader-progress">
+        <div class="loader-progress-bar" id="loaderBar"></div>
+      </div>
+      <div class="loader-percent" id="loaderPercent">0</div>
+    </div>
+  </div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav" id="nav">
+    <a href="#philosophy" class="nav-link">Philosophy</a>
+    <div class="nav-logo">INTRINSE</div>
+    <div class="nav-right">
+      <a href="#shop" class="nav-link">Shop</a>
+      <button class="nav-cart-btn" id="cartToggle" aria-label="Open cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="nav-cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== CART DRAWER ========== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Your Ritual</h3>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="cart-drawer-body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <p>Your cart is empty.</p>
+        <a href="#shop" class="btn btn-sm" id="cartShopLink">Explore the Collection</a>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+    </div>
+    <div class="cart-drawer-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">&euro;0.00</span>
+      </div>
+      <button class="btn btn-primary cart-checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <!-- ========== CHECKOUT OVERLAY ========== -->
+  <div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-modal">
+      <button class="cart-close checkout-close" id="checkoutClose" aria-label="Close checkout">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="checkout-inner">
+        <div class="checkout-left">
+          <h3>Checkout</h3>
+          <p class="checkout-sub">Complete your order below.</p>
+          <form class="checkout-form" id="checkoutForm">
+            <div class="checkout-section">
+              <h4>Contact</h4>
+              <input type="email" placeholder="Email address" class="checkout-input" required>
+            </div>
+            <div class="checkout-section">
+              <h4>Shipping</h4>
+              <div class="checkout-row">
+                <input type="text" placeholder="First name" class="checkout-input" required>
+                <input type="text" placeholder="Last name" class="checkout-input" required>
+              </div>
+              <input type="text" placeholder="Address" class="checkout-input" required>
+              <div class="checkout-row">
+                <input type="text" placeholder="City" class="checkout-input" required>
+                <input type="text" placeholder="Postal code" class="checkout-input" required>
+              </div>
+              <input type="text" placeholder="Country" class="checkout-input" required>
+            </div>
+            <div class="checkout-section">
+              <h4>Payment</h4>
+              <input type="text" placeholder="Card number" class="checkout-input" required>
+              <div class="checkout-row">
+                <input type="text" placeholder="MM / YY" class="checkout-input" required>
+                <input type="text" placeholder="CVC" class="checkout-input" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg checkout-submit">Place Order</button>
+          </form>
+        </div>
+        <div class="checkout-right">
+          <h4>Order Summary</h4>
+          <div class="checkout-summary-items" id="checkoutItems"></div>
+          <div class="checkout-summary-total">
+            <span>Total</span>
+            <span id="checkoutTotal">&euro;0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== HERO — Oura-style: text left, video right ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-label">Conscious Nutrition</span>
+        <h1 class="hero-title">
+          <span class="hero-title-line">Reveal</span>
+          <span class="hero-title-line">what is</span>
+          <span class="hero-title-line hero-title-italic">within.</span>
+        </h1>
+        <p class="hero-sub">Three states. One system.<br>Designed to unlock what already exists inside you.</p>
+        <div class="hero-states">
+          <span>ENERGY</span>
+          <span class="hero-state-dot"></span>
+          <span>FOCUS</span>
+          <span class="hero-state-dot"></span>
+          <span>BALANCE</span>
+        </div>
+        <a href="#shop" class="btn hero-btn">Discover the Collection</a>
+      </div>
+      <div class="hero-visual">
+        <video class="hero-video" autoplay muted loop playsinline>
+          <source src="assets/images/hero-splash.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== PHILOSOPHY ========== -->
+  <section class="philosophy" id="philosophy">
+    <div class="philosophy-inner">
+      <span class="section-label sweep-label">The Philosophy</span>
+      <h2 class="philosophy-heading">
+        <span class="sweep-line"><span class="sweep-line-inner">Performance does not</span></span>
+        <span class="sweep-line"><span class="sweep-line-inner">come from noise.</span></span>
+        <span class="sweep-line sweep-line-italic"><span class="sweep-line-inner">It comes from clarity.</span></span>
+      </h2>
+      <div class="philosophy-divider"></div>
+      <div class="philosophy-text">
+        <span class="reveal-line"><span class="reveal-line-inner">Energy, focus and balance are not things we consume.</span></span>
+        <span class="reveal-line"><span class="reveal-line-inner">They are states that already exist within us.</span></span>
+        <span class="reveal-line"><span class="reveal-line-inner">INTRINSE was designed to reveal them.</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== THREE STATES INTRODUCTION ========== -->
+  <section class="states-intro" id="statesIntro">
+    <div class="states-intro-inner">
+      <div class="states-intro-text">
+        <span class="section-label sweep-label">The System</span>
+        <h2 class="states-intro-heading">
+          <span class="sweep-line"><span class="sweep-line-inner">Three states.</span></span>
+          <span class="sweep-line"><span class="sweep-line-inner sweep-line-dim">One system.</span></span>
+        </h2>
+        <div class="states-intro-divider"></div>
+        <p class="states-intro-body">
+          <span class="reveal-line"><span class="reveal-line-inner">Every great day follows the same quiet arc —</span></span>
+          <span class="reveal-line"><span class="reveal-line-inner">the spark that starts it, the clarity that shapes it,</span></span>
+          <span class="reveal-line"><span class="reveal-line-inner">and the stillness where everything falls into place.</span></span>
+        </p>
+        <p class="states-intro-body states-intro-body-second">
+          <span class="reveal-line"><span class="reveal-line-inner">INTRINSE is a three-part protein blend built around</span></span>
+          <span class="reveal-line"><span class="reveal-line-inner">this natural rhythm. Not three separate products —</span></span>
+          <span class="reveal-line"><span class="reveal-line-inner">one evolving system, designed to be collected whole.</span></span>
+        </p>
+      </div>
+      <div class="states-intro-visual">
+        <img src="assets/images/three-states.png" alt="INTRINSE — Energy, Focus, Balance" class="states-intro-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ROTATING CAROUSEL — Seed-inspired ========== -->
+  <section class="products-section" id="shop">
+    <span class="section-label sweep-label">The Collection</span>
+    <h2 class="products-heading"><span class="sweep-line"><span class="sweep-line-inner">Choose Your State</span></span></h2>
+    <p class="products-sub">Three blends. One system. Collect all three to complete your ritual.</p>
+
+    <div class="products-grid">
+      <div class="product-card" data-product="energy">
+        <div class="product-card-video-wrap">
+          <video class="product-card-video" muted playsinline preload="auto">
+            <source src="assets/images/energy.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="product-card-info">
+          <span class="product-card-label">01 — The First State</span>
+          <h3>ENERGY</h3>
+          <p>Ashwagandha Protein Blend</p>
+          <span class="product-card-price">&euro;39.00</span>
+          <button class="btn btn-sm btn-energy">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card product-card-featured" data-product="focus">
+        <div class="product-card-video-wrap">
+          <video class="product-card-video" muted playsinline preload="auto">
+            <source src="assets/images/focus.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="product-card-info">
+          <span class="product-card-label">02 — The Second State</span>
+          <h3>FOCUS</h3>
+          <p>Coffee Extract Protein Blend</p>
+          <span class="product-card-price">&euro;39.00</span>
+          <button class="btn btn-sm btn-focus">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-product="balance">
+        <div class="product-card-video-wrap">
+          <video class="product-card-video" muted playsinline preload="auto">
+            <source src="assets/images/balance.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="product-card-info">
+          <span class="product-card-label">03 — The Third State</span>
+          <h3>BALANCE</h3>
+          <p>Guarana Protein Blend</p>
+          <span class="product-card-price">&euro;39.00</span>
+          <button class="btn btn-sm btn-balance">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== THE RITUAL — Complete the system ========== -->
+  <section class="ritual" id="ritual">
+    <div class="ritual-inner">
+      <span class="section-label">The Ritual</span>
+      <h2 class="ritual-heading"><span class="sweep-line"><span class="sweep-line-inner">Complete the System</span></span></h2>
+      <p class="ritual-text">
+        INTRINSE is not a product you take. It is a practice you return to.<br>
+        Each blend was formulated as part of a whole — a three-part system designed to move with your day, your rhythm, your evolution.
+      </p>
+      <div class="ritual-bundle">
+        <div class="ritual-bundle-img">
+          <img src="assets/images/collection.png" alt="INTRINSE Complete Collection">
+        </div>
+        <div class="ritual-bundle-info">
+          <h3>The Complete Collection</h3>
+          <p>All three states. One ritual.</p>
+          <div class="ritual-bundle-items">
+            <span><strong>ENERGY</strong> — Ashwagandha Blend</span>
+            <span><strong>FOCUS</strong> — Coffee Extract Blend</span>
+            <span><strong>BALANCE</strong> — Guarana Blend</span>
+          </div>
+          <div class="ritual-bundle-price">
+            <span class="ritual-price-old">&euro;117.00</span>
+            <span class="ritual-price-new">&euro;99.00</span>
+          </div>
+          <button class="btn btn-primary">Complete Your Ritual</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INGREDIENTS BREAKDOWN ========== -->
+  <section class="ingredients" id="ingredients">
+    <span class="section-label">The Blend</span>
+    <h2 class="ingredients-heading"><span class="sweep-line"><span class="sweep-line-inner">What Goes In</span></span></h2>
+    <p class="ingredients-sub">Every ingredient was chosen with intention. Nothing more, nothing less.</p>
+    <div class="ingredients-grid">
+      <div class="ingredient-card">
+        <div class="ingredient-visual">
+          <img src="assets/images/ashwagandha.png" alt="Ashwagandha">
+        </div>
+        <h3>Ashwagandha</h3>
+        <span class="ingredient-tag">ENERGY</span>
+        <p>[This is where the description of the ashwagandha ingredient goes — its origin, benefits for sustained energy, adaptogenic properties, and how it differs from stimulants.]</p>
+      </div>
+      <div class="ingredient-card">
+        <div class="ingredient-visual">
+          <img src="assets/images/coffee.png" alt="Coffee Extract">
+        </div>
+        <h3>Coffee Extract</h3>
+        <span class="ingredient-tag">FOCUS</span>
+        <p>[This is where the description of the coffee extract goes — sourcing, cognitive benefits, precise dosage philosophy, and the science behind sustained mental clarity.]</p>
+      </div>
+      <div class="ingredient-card">
+        <div class="ingredient-visual">
+          <img src="assets/images/guarana.png" alt="Guarana">
+        </div>
+        <h3>Guarana</h3>
+        <span class="ingredient-tag">BALANCE</span>
+        <p>[This is where the description of the guarana ingredient goes — Amazonian origins, slow-release caffeine properties, synergy with the protein base, and calming balance.]</p>
+      </div>
+      <div class="ingredient-card">
+        <div class="ingredient-visual">
+          <img src="assets/images/protein.png" alt="Protein Base">
+        </div>
+        <h3>Protein Base</h3>
+        <span class="ingredient-tag">FOUNDATION</span>
+        <p>[This is where the description of the protein base goes — source, amino acid profile, digestibility, and how it serves as the foundation for the functional blend.]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CLOSING / CTA ========== -->
+  <section class="closing">
+    <div class="closing-inner">
+      <h2 class="closing-heading"><span class="sweep-line"><span class="sweep-line-inner">The evolution begins within.</span></span></h2>
+      <p class="closing-sub">INTRINSE — Conscious Nutrition</p>
+      <a href="#shop" class="btn btn-primary btn-lg">Discover the Collection</a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">INTRINSE</span>
+        <p>Conscious Nutrition</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <a href="#philosophy">Philosophy</a>
+          <a href="#states">The States</a>
+          <a href="#shop">Shop</a>
+          <a href="#ingredients">Ingredients</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Shipping & Returns</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Stay Conscious</h4>
+        <p>Join the inner circle.</p>
+        <div class="footer-input-wrap">
+          <input type="email" placeholder="Your email" class="footer-input">
+          <button class="btn btn-sm">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 INTRINSE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
