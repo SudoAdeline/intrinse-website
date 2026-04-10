@@ -6,7 +6,6 @@
 // ── Wait for DOM ──
 document.addEventListener('DOMContentLoaded', () => {
   initLoader();
-  initThemeSwitcher();
   initCarousel();
   initCart();
   initRevealAnimations();
@@ -388,39 +387,6 @@ function initRevealAnimations() {
   });
 }
 
-/* ========== THEME SWITCHER ========== */
-function initThemeSwitcher() {
-  const toggle = document.getElementById('themeToggle');
-  const options = document.getElementById('themeOptions');
-  const buttons = options.querySelectorAll('button');
-
-  toggle.addEventListener('click', () => {
-    options.classList.toggle('open');
-  });
-
-  // Close when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.theme-switcher')) {
-      options.classList.remove('open');
-    }
-  });
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const theme = btn.dataset.theme;
-      document.body.setAttribute('data-theme', theme);
-
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // Small haptic-like visual feedback
-      gsap.fromTo(document.body,
-        { opacity: 0.95 },
-        { opacity: 1, duration: 0.4, ease: 'power2.out' }
-      );
-    });
-  });
-}
 
 /* ========== PARALLAX on Hero (subtle) ========== */
 window.addEventListener('scroll', () => {

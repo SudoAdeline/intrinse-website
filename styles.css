@@ -20,8 +20,8 @@
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* ── DARK THEME (Default) ── */
-[data-theme="dark"] {
+/* ── Dark Theme Colors ── */
+:root {
   --bg: #0a0a0a;
   --bg-elevated: #141414;
   --bg-card: #1a1a1a;
@@ -40,72 +40,6 @@
   --ingredient-bg: #1f1d1a;
   --btn-bg: #e8e4df;
   --btn-text: #0a0a0a;
-}
-
-/* ── LIGHT THEME ── */
-[data-theme="light"] {
-  --bg: #f5f2ed;
-  --bg-elevated: #eae6e0;
-  --bg-card: #ffffff;
-  --text: #1a1816;
-  --text-dim: #6b6560;
-  --text-muted: #9a958f;
-  --accent-energy: #b5683a;
-  --accent-focus: #5a6570;
-  --accent-balance: #8a7e6e;
-  --border: rgba(0,0,0,0.08);
-  --border-hover: rgba(0,0,0,0.15);
-  --gradient-hero: radial-gradient(ellipse at 50% 80%, rgba(180,160,140,0.2) 0%, transparent 70%);
-  --shadow-product: 0 40px 80px rgba(0,0,0,0.12);
-  --loader-bg: #f5f2ed;
-  --nav-bg: rgba(245,242,237,0.9);
-  --ingredient-bg: #eae6e0;
-  --btn-bg: #1a1816;
-  --btn-text: #f5f2ed;
-}
-
-/* ── NATURE THEME ── */
-[data-theme="nature"] {
-  --bg: #0d1210;
-  --bg-elevated: #141f1a;
-  --bg-card: #1a2820;
-  --text: #d4ddd6;
-  --text-dim: #7a9480;
-  --text-muted: #4a6050;
-  --accent-energy: #c49a5a;
-  --accent-focus: #6aaa8a;
-  --accent-balance: #8ab49a;
-  --border: rgba(100,160,120,0.1);
-  --border-hover: rgba(100,160,120,0.2);
-  --gradient-hero: radial-gradient(ellipse at 50% 80%, rgba(40,80,50,0.25) 0%, transparent 70%);
-  --shadow-product: 0 40px 80px rgba(0,0,0,0.5);
-  --loader-bg: #0a0f0c;
-  --nav-bg: rgba(13,18,16,0.9);
-  --ingredient-bg: #162018;
-  --btn-bg: #d4ddd6;
-  --btn-text: #0d1210;
-}
-
-/* ── EARTH THEME ── */
-[data-theme="earth"] {
-  --bg: #1a1510;
-  --bg-elevated: #231e17;
-  --bg-card: #2a231a;
-  --text: #e0d5c4;
-  --text-dim: #9a8a70;
-  --text-muted: #6a5a45;
-  --accent-energy: #d4944a;
-  --accent-focus: #b0a080;
-  --accent-balance: #a09480;
-  --border: rgba(160,130,80,0.12);
-  --border-hover: rgba(160,130,80,0.2);
-  --gradient-hero: radial-gradient(ellipse at 50% 80%, rgba(80,60,30,0.3) 0%, transparent 70%);
-  --shadow-product: 0 40px 80px rgba(0,0,0,0.5);
-  --loader-bg: #100d08;
-  --nav-bg: rgba(26,21,16,0.9);
-  --ingredient-bg: #201a12;
-  --btn-bg: #e0d5c4;
-  --btn-text: #1a1510;
 }
 
 /* ── Reset & Base ── */
@@ -196,70 +130,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .btn-balance:hover { border-color: var(--accent-balance); }
 .btn-balance::before { background: var(--accent-balance); }
 
-/* ========== THEME SWITCHER ========== */
-.theme-switcher {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-}
-
-.theme-toggle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  color: var(--text-dim);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  backdrop-filter: blur(10px);
-}
-.theme-toggle:hover { border-color: var(--text-dim); color: var(--text); }
-
-.theme-options {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 8px;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(10px);
-  transition: all 0.3s var(--ease-smooth);
-  backdrop-filter: blur(20px);
-}
-
-.theme-options.open {
-  opacity: 1;
-  pointer-events: all;
-  transform: translateY(0);
-}
-
-.theme-options button {
-  font-family: var(--font-display);
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 8px 20px;
-  color: var(--text-dim);
-  border-radius: 6px;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.theme-options button:hover,
-.theme-options button.active {
-  color: var(--text);
-  background: var(--border);
-}
 
 /* ========== LOADER ========== */
 .loader {
@@ -1535,7 +1405,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     grid-template-columns: 1fr;
   }
 
-  .theme-switcher { bottom: 20px; right: 20px; }
 }
 
 /* ========== NAV RIGHT ========== */
