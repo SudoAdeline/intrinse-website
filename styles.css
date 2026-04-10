@@ -50,6 +50,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  color-scheme: dark;
 }
 
 body {
@@ -603,18 +604,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   translate: 0 40px;
 }
 
-/* Responsive */
+/* Responsive — States intro */
 @media (max-width: 900px) {
   .states-intro-inner {
     flex-direction: column-reverse;
     text-align: center;
+    gap: 40px;
   }
 
   .states-intro-visual {
     flex: none;
     max-width: 100%;
     width: 100%;
-    height: clamp(320px, 50vw, 420px);
+    height: clamp(280px, 50vw, 400px);
   }
 
   .states-intro-text {
@@ -629,7 +631,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
 
   .states-intro-divider {
-    margin: 32px auto;
+    margin: 28px auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .states-intro {
+    padding: clamp(60px, 10vh, 100px) 20px;
+  }
+  .states-intro-visual {
+    height: clamp(240px, 60vw, 320px);
   }
 }
 
@@ -876,12 +887,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 16px;
 }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
+/* ── Responsive — Products ── */
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .product-card-featured .product-card-video-wrap {
+    border-color: var(--border);
+  }
+}
+
+@media (max-width: 600px) {
   .products-grid {
     grid-template-columns: 1fr;
-    max-width: 400px;
-    gap: 48px;
+    max-width: 360px;
+    gap: 40px;
   }
 }
 
@@ -1320,6 +1341,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ========== RESPONSIVE ========== */
+
+/* ── Tablet (≤900px) ── */
 @media (max-width: 900px) {
   .hero-inner {
     flex-direction: column-reverse;
@@ -1327,9 +1350,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
   .hero-text {
     flex: none;
-    padding: 40px 24px 60px;
+    padding: 32px 24px 48px;
     text-align: center;
     align-items: center;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 8vw, 52px);
   }
 
   .hero-btn { align-self: center; }
@@ -1349,6 +1376,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     background: linear-gradient(to top, var(--bg), transparent);
   }
 
+  .hero-visual::after {
+    display: none;
+  }
+
   .state-panel {
     flex-direction: column-reverse;
     text-align: center;
@@ -1364,6 +1395,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     flex-direction: column;
     text-align: center;
   }
+  .ritual-bundle-img {
+    max-width: 340px;
+    margin: 0 auto;
+  }
   .ritual-bundle-info { text-align: center; }
   .ritual-bundle-items { align-items: center; }
   .ritual-bundle-price { justify-content: center; }
@@ -1374,37 +1409,229 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .evolution-visual { max-width: 100%; }
 
   .footer-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
 
-  .carousel-track {
-    gap: 20px;
-  }
-  .carousel-card {
-    flex: 0 0 280px;
+  .ingredients-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ── Mobile (≤600px) ── */
 @media (max-width: 600px) {
-  .carousel-card {
-    flex: 0 0 260px;
+  :root {
+    --section-pad: clamp(60px, 10vh, 100px);
   }
-  .carousel-card-img-wrap { height: 320px; }
 
-  .nav { padding: 16px 20px; }
-  .nav-logo { font-size: 15px; letter-spacing: 4px; }
-  .nav-link { font-size: 11px; }
+  /* Nav */
+  .nav {
+    padding: 14px 16px;
+  }
+  .nav-logo {
+    font-size: 14px;
+    letter-spacing: 5px;
+  }
+  .nav-link {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+  .nav-right {
+    gap: 16px;
+  }
 
+  /* Hero */
+  .hero-visual {
+    height: 45vh;
+  }
+  .hero-text {
+    padding: 24px 20px 40px;
+  }
+  .hero-title {
+    font-size: clamp(32px, 9vw, 44px);
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .hero-states {
+    font-size: 10px;
+    letter-spacing: 2px;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .hero-label {
+    font-size: 10px;
+    margin-bottom: 20px;
+  }
+  .scroll-indicator {
+    bottom: 20px;
+  }
+
+  /* Philosophy */
+  .philosophy {
+    padding: clamp(80px, 14vh, 140px) 20px;
+  }
+  .philosophy-heading {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+  .philosophy-text {
+    font-size: clamp(15px, 3.5vw, 18px);
+    line-height: 1.8;
+  }
+
+  /* States intro */
+  .states-intro {
+    padding: clamp(60px, 10vh, 120px) 20px;
+  }
+  .states-intro-heading {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+  .states-intro-body {
+    font-size: clamp(15px, 3.5vw, 18px);
+  }
+
+  /* Products */
+  .products-section {
+    padding: var(--section-pad) 20px;
+  }
+  .products-heading {
+    font-size: clamp(26px, 7vw, 36px);
+  }
+  .products-sub {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+  .product-card-info h3 {
+    font-size: 17px;
+    letter-spacing: 3px;
+  }
+  .product-card-price {
+    font-size: 16px;
+  }
+
+  /* Ritual */
+  .ritual {
+    padding: var(--section-pad) 20px;
+  }
+  .ritual-heading {
+    font-size: clamp(26px, 7vw, 36px);
+  }
+  .ritual-text {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+  .ritual-bundle-img {
+    max-width: 280px;
+  }
+  .ritual-bundle-info h3 {
+    font-size: clamp(22px, 5vw, 28px);
+  }
+  .ritual-price-new {
+    font-size: 24px;
+  }
+
+  /* Ingredients */
+  .ingredients {
+    padding: var(--section-pad) 20px;
+  }
+  .ingredients-heading {
+    font-size: clamp(26px, 7vw, 36px);
+  }
+  .ingredients-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .ingredient-card {
+    padding: 24px;
+  }
+  .ingredient-visual {
+    height: 160px;
+  }
+
+  /* Closing */
+  .closing {
+    padding: clamp(80px, 16vh, 160px) 20px;
+  }
+  .closing-heading {
+    font-size: clamp(26px, 7vw, 40px);
+  }
+  .closing-sub {
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 32px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 40px 20px 24px;
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  .footer-logo {
+    font-size: 15px;
+    letter-spacing: 5px;
+  }
+  .footer-input-wrap {
+    flex-direction: column;
+  }
+  .footer-input {
+    width: 100%;
+  }
+
+  /* Buttons — bigger touch targets on mobile */
+  .btn {
+    padding: 16px 32px;
+    font-size: 12px;
+  }
+  .btn-sm {
+    padding: 12px 24px;
+    font-size: 11px;
+  }
+  .btn-lg {
+    padding: 18px 40px;
+    font-size: 13px;
+  }
+
+  /* Cart drawer */
+  .cart-drawer {
+    width: 100vw;
+  }
+  .cart-drawer-header {
+    padding: 20px;
+  }
+  .cart-drawer-body {
+    padding: 20px;
+  }
+  .cart-drawer-footer {
+    padding: 20px;
+  }
+
+  /* Checkout */
+  .checkout-modal {
+    padding: 80px 20px 40px;
+  }
+  .checkout-close {
+    top: 20px;
+    right: 20px;
+  }
+  .checkout-left h3 {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+  .checkout-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* State name */
   .state-name {
     font-size: 40px;
     letter-spacing: 4px;
   }
-
-  .ingredients-grid {
-    grid-template-columns: 1fr;
-  }
-
 }
 
 /* ========== NAV RIGHT ========== */
@@ -1814,9 +2041,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media (max-width: 700px) {
   .checkout-inner {
     flex-direction: column-reverse;
+    gap: 32px;
   }
   .checkout-right {
     position: static;
+    padding: 24px;
   }
 }
 
