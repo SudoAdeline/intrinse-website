@@ -191,20 +191,20 @@ function initStatesScroll() {
   });
 }
 
-/* ========== PRODUCT VIDEOS — Play once on scroll, freeze on last frame ========== */
+/* ========== PRODUCT VIDEOS — Play on scroll, reset when leaving ========== */
 function initCarousel() {
   const videos = document.querySelectorAll('.product-card-video');
   if (!videos.length) return;
 
-  const played = new Set();
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const video = entry.target;
-      if (entry.isIntersecting && !played.has(video)) {
-        played.add(video);
+      if (entry.isIntersecting) {
+        video.currentTime = 0;
         video.play().catch(() => {});
-        // When video ends, it stays on the last frame (no loop, no reset)
+      } else {
+        video.pause();
+        video.currentTime = 0;
       }
     });
   }, {

@@ -7,9 +7,9 @@
 :root {
   /* Typography */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
+  --font-heading: 'Outfit', -apple-system, sans-serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Outfit', -apple-system, sans-serif;
 
   /* Spacing */
   --section-pad: clamp(80px, 12vh, 160px);
@@ -342,7 +342,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 300;
-  letter-spacing: 6px;
+  letter-spacing: 8px;
 }
 
 .nav-link {
@@ -402,9 +402,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-title {
   font-family: var(--font-heading);
   font-size: clamp(42px, 6.5vw, 82px);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.05;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin-bottom: 32px;
 }
 
@@ -415,7 +415,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .hero-title-italic {
+  font-family: var(--font-serif);
   font-style: italic;
+  font-weight: 400;
   color: var(--text-dim);
 }
 
@@ -584,14 +586,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .philosophy-heading {
   font-family: var(--font-heading);
   font-size: clamp(36px, 6.5vw, 72px);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.2;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin-bottom: 0;
 }
 
 .sweep-line-italic {
+  font-family: var(--font-serif);
   font-style: italic;
+  font-weight: 400;
 }
 
 .sweep-line-italic .sweep-line-inner {
@@ -629,7 +633,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .states-intro-heading {
   font-family: var(--font-heading);
   font-size: clamp(36px, 5.5vw, 64px);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.15;
   letter-spacing: -0.01em;
   margin-bottom: 0;
@@ -903,7 +907,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .products-heading {
   font-family: var(--font-heading);
   font-size: clamp(32px, 5vw, 52px);
-  font-weight: 400;
+  font-weight: 300;
   margin-bottom: 16px;
 }
 
@@ -1331,9 +1335,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .closing-heading {
-  font-family: var(--font-heading);
+  font-family: var(--font-serif);
   font-size: clamp(32px, 6vw, 60px);
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 16px;
   font-style: italic;
 }
